@@ -1,5 +1,10 @@
 <h1>Cadastro de Cliente</h1>
-<form>
+<!-- <form
+  id="add-form"
+  (ngSubmit)="f.form.valid && saveCliente(f)"
+  #f="ngForm"
+  novalidate
+>
   <table>
     <tr>
       <td><label for="cad-cod">Codigo</label></td>
@@ -15,28 +20,61 @@
     </tr>
     <tr>
       <td><label for="cad-cep">CEP</label></td>
-      <td><input [(ngModel)]="cep" /></td>
+      <td><input [(ngModel)]="cep" id="cep-cad" name="cep-cad" /></td>
     </tr>
     <tr>
       <td colspan="2">
-        <button type="submit" (click)="getEndereco(cep)">Buscar Endereço Pelo CEP</button>
+        <button type="submit" (click)="getEndereco()">
+          Buscar Endereço Pelo CEP
+        </button>
       </td>
     </tr>
     <tr>
       <td><label for="cad-end">Endereço</label></td>
-      <td><input type="text" name="cad-end" [value]="endereco" [disabled]="campodesativado"/></td>
+      <td>
+        <input
+          type="text"
+          name="cad-end"
+          [value]="endereco"
+          [disabled]="campodesativado"
+        />
+      </td>
     </tr>
     <tr>
       <td><label for="cad-bai">Bairro</label></td>
-      <td><input type="text" name="cad-bai" id="bairro" [value]="bairro" [disabled]="campodesativado"/></td>
+      <td>
+        <input
+          type="text"
+          name="cad-bai"
+          id="bairro"
+          [value]="bairro"
+          [disabled]="campodesativado"
+        />
+      </td>
     </tr>
     <tr>
       <td><label for="cad-loc">Localidade</label></td>
-      <td><input type="text" name="cad-loc" id="cidade" [value]="localidade" [disabled]="campodesativado"/></td>
+      <td>
+        <input
+          type="text"
+          name="cad-loc"
+          id="cidade"
+          [value]="localidade"
+          [disabled]="campodesativado"
+        />
+      </td>
     </tr>
     <tr>
       <td><label for="cad-uf">Uf</label></td>
-      <td><input type="text" name="cad-uf" id="uf" [value]="uf" [disabled]="campodesativado"/></td>
+      <td>
+        <input
+          type="text"
+          name="cad-uf"
+          id="uf"
+          [value]="uf"
+          [disabled]="campodesativado"
+        />
+      </td>
     </tr>
     <tr>
       <td><label for="cad-dat">Data</label></td>
@@ -52,5 +90,216 @@
     </tr>
   </table>
   <button type="submit">Cadastrar!</button>
-</form>
+</form> -->
 
+<div class="card add-cliente">
+  <!-- <h5 class="card-header">Adicionar/Atualizar cliente</h5> -->
+  <div class="card-body">
+    <form
+      id="add-form"
+      (ngSubmit)="f.form.valid && saveCliente(f)"
+      #f="ngForm"
+      novalidate
+    >
+      <div class="form-group">
+        <label for="cod">Codigo</label>
+        <input
+          type="text"
+          [(ngModel)]="cliente.codigo"
+          id="cod"
+          name="cod"
+          #cod="ngModel"
+          required
+          class="form-control"
+          [ngClass]="{ 'is-invalid': f.submitted && cod.invalid }"
+          placeholder="Digite o codigo"
+        />
+        <div *ngIf="f.submitted && cod.invalid" class="invalid-feedback">
+          <div *ngIf="codigo.errors.required">Codigo é obrigatório</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="cod">Nome</label>
+        <input
+          type="text"
+          [(ngModel)]="cliente.nome"
+          id="nom"
+          name="nom"
+          #nom="ngModel"
+          required
+          class="form-control"
+          [ngClass]="{ 'is-invalid': f.submitted && nom.invalid }"
+          placeholder="Digite o nome"
+        />
+        <div *ngIf="f.submitted && nom.invalid" class="invalid-feedback">
+          <div *ngIf="nome.errors.required">Nome é obrigatório</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="cod">Nome Fantasia</label>
+        <input
+          type="text"
+          [(ngModel)]="cliente.nome_fantasia"
+          id="nfa"
+          name="nfa"
+          #nfa="ngModel"
+          required
+          class="form-control"
+          [ngClass]="{ 'is-invalid': f.submitted && nfa.invalid }"
+          placeholder="Digite o nome fantasia"
+        />
+        <div *ngIf="f.submitted && nfa.invalid" class="invalid-feedback">
+          <div *ngIf="nome_fantasia.errors.required">
+            Nome fantasia é obrigatório
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="ce">CEP</label>
+        <input
+          type="text"
+          [(ngModel)]="cep"
+          id="ce"
+          name="ce"
+          #ce="ngModel"
+          required
+          class="form-control"
+          [ngClass]="{ 'is-invalid': f.submitted && ce.invalid }"
+          placeholder="Digite o Cep"
+        />
+        <div *ngIf="f.submitted && ce.invalid" class="invalid-feedback">
+          <div *ngIf="">CEP é obrigatório</div>
+        </div>
+      </div>
+
+      <div (click)="getEndereco()" class="btn btn-primary btn-add-cliente">
+        Buscar Endereço Pelo CEP
+      </div>
+
+      <div class="form-group">
+        <label for="bai">Bairro</label>
+        <input
+          type="text"
+          [(ngModel)]="cliente.bairro"
+          id="bai"
+          name="bai"
+          #bai="ngModel"
+          required
+          class="form-control"
+          [ngClass]="{ 'is-invalid': f.submitted && bai.invalid }"
+          [disabled]="campodesativado"
+          placeholder="Digite o cep"
+        />
+        <div *ngIf="f.submitted && bai.invalid" class="invalid-feedback">
+          <div *ngIf="">Bairro é obrigatório</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="loc">Cidade</label>
+        <input
+          type="text"
+          [(ngModel)]="cliente.localidade"
+          id="loc"
+          name="loc"
+          #loc="ngModel"
+          required
+          class="form-control"
+          [ngClass]="{ 'is-invalid': f.submitted && bai.invalid }"
+          [disabled]="campodesativado"
+          placeholder="Digite o cep"
+        />
+        <div *ngIf="f.submitted && bai.invalid" class="invalid-feedback">
+          <div *ngIf="">Cidade é obrigatória</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="loc">Uf</label>
+        <input
+          type="text"
+          [(ngModel)]="cliente.uf"
+          id="uf"
+          name="uf"
+          #uf="ngModel"
+          required
+          class="form-control"
+          [ngClass]="{ 'is-invalid': f.submitted && uf.invalid }"
+          [disabled]="campodesativado"
+          placeholder="Digite o cep"
+        />
+        <div *ngIf="f.submitted && uf.invalid" class="invalid-feedback">
+          <div *ngIf="">UF é obrigatória</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="dat">Data</label>
+        <input
+          type="date"
+          [(ngModel)]="cliente.data"
+          id="dat"
+          name="dat"
+          #dat="ngModel"
+          required
+          class="form-control"
+          [ngClass]="{ 'is-invalid': f.submitted && dat.invalid }"
+          placeholder="Entre com a data"
+        />
+        <div *ngIf="f.submitted && dat.invalid" class="invalid-feedback">
+          <div *ngIf="">Data é obrigatória</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="cnp">CNPJ</label>
+        <input
+          type="text"
+          [(ngModel)]="cliente.cnpj"
+          id="uf"
+          name="cnp"
+          #cnp="ngModel"
+          required
+          class="form-control"
+          [ngClass]="{ 'is-invalid': f.submitted && cnp.invalid }"
+          placeholder="Digite o cnpj"
+        />
+        <div *ngIf="f.submitted && cnp.invalid" class="invalid-feedback">
+          <div *ngIf="">cnpj é obrigatório</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="cnp">Logradouro</label>
+        <input
+          type="text"
+          [(ngModel)]="cliente.logradouro"
+          id="log"
+          name="log"
+          #log="ngModel"
+          required
+          class="form-control"
+          [ngClass]="{ 'is-invalid': f.submitted && log.invalid }"
+          placeholder="Digite o logradouro"
+        />
+        <div *ngIf="f.submitted && log.invalid" class="invalid-feedback">
+          <div *ngIf="">logradouro é obrigatório</div>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-add-cliente">
+        Cadastrar
+      </button>
+      <button
+        type="reset"
+        class="btn btn-secondary btn-add-cliente"
+        (click)="cleanForm(f)"
+      >
+        Cancelar
+      </button>
+    </form>
+  </div>
+</div>

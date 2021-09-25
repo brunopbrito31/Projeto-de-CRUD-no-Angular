@@ -1,40 +1,40 @@
-import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { Cep } from 'src/app/models/cep';
-import { Cliente } from 'src/app/models/cliente';
-import { CepService } from 'src/app/shared/services/cep.service';
-import { ClienteService } from 'src/app/shared/services/cliente.service';
+import { Component, OnInit } from "@angular/core";
+import { NgForm } from "@angular/forms";
+import { Cep } from "src/app/models/cep";
+import { Cliente } from "src/app/models/cliente";
+import { CepService } from "src/app/shared/services/cep.service";
+import { ClienteService } from "src/app/shared/services/cliente.service";
 
 @Component({
-  selector: 'app-cadastro-cliente',
-  templateUrl: './cadastro-cliente.component.html',
-  styleUrls: ['./cadastro-cliente.component.css']
+  selector: "app-cadastro-cliente",
+  templateUrl: "./cadastro-cliente.component.html",
+  styleUrls: ["./cadastro-cliente.component.css"],
 })
 export class CadastroClienteComponent implements OnInit {
   [x: string]: any;
+  cliente = {
+  } as Cliente;
 
-  cep:string = ""
-  endereco:string = ""
-  bairro:string = ""
-  localidade:string = ""
-  uf:string = ""
+  cep: string = "0";
+  endereco: string = "";
+  bairro: string = "";
+  localidade: string = "";
+  uf: string = "";
   campodesativado = false;
-  cliente: Cliente;
 
+  constructor(
+    private cepService: CepService,
+    private clienteService: ClienteService
+  ) {}
 
-  constructor(private cepService: CepService,
-    private clienteService: ClienteService) { }
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
-  }
-
-  getEndereco(cep: string) {
-    alert(cep)
-    this.cepService.getCep(cep).subscribe((cep: Cep) => {
-      this.endereco = cep.logradouro;
-      this.bairro = cep.bairro;
-      this.localidade = cep.localidade;
-      this.uf = cep.uf
+  getEndereco() {
+    this.cepService.getCep(this.cep).subscribe((cep: Cep) => {
+      this.cliente.endereco = cep.logradouro;
+      this.cliente.bairro = cep.bairro;
+      this.cliente.localidade = cep.localidade;
+      this.cliente.uf = cep.uf;
       this.campodesativado = true;
     });
   }
@@ -49,6 +49,13 @@ export class CadastroClienteComponent implements OnInit {
         this.cleanForm(form);
       });
     }
+    alert("pronto!")
   }
 
+   // limpa o formulario
+   cleanForm(form: NgForm) {
+    this.getClientes();
+    form.resetForm();
+    this.cliente = {} as Cliente;
+  }
 }
