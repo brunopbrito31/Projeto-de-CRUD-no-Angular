@@ -47,8 +47,8 @@ export class ClienteListComponent implements OnInit {
   }
 
   // copia o cliente para ser editado.
-  editCliente(car: Cliente) {
-    this.cliente = { ...car };
+  editCliente(cliente: Cliente) {
+    this.cliente = { ...cliente };
   }
 
   // limpa o formulario

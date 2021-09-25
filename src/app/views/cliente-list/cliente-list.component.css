@@ -1,0 +1,16 @@
+
+.container {
+  margin-top: 30px;
+}
+
+.add-car {
+  margin-bottom: 30px;
+}
+
+.list-cliente {
+  margin-bottom: 50px;
+}
+
+.bbtn btn-danger btn-sm ml-1 {
+  margin-right: 10px;
+}

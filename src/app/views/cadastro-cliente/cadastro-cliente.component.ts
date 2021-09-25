@@ -49,7 +49,13 @@ export class CadastroClienteComponent implements OnInit {
         this.cleanForm(form);
       });
     }
-    alert("pronto!")
+    alert("Castro Completo!")
+  }
+
+  getClientes() {
+    this.clienteService.getClientes().subscribe((clientes: Cliente[]) => {
+      this.clientes = clientes;
+    });
   }
 
    // limpa o formulario
