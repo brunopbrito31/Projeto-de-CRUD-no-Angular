@@ -49,7 +49,7 @@ export class CadastroClienteComponent implements OnInit {
         this.cleanForm(form);
       });
     }
-    alert("Castro Completo!")
+    alert("Cadastro Completo!")
   }
 
   getClientes() {
