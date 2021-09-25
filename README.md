@@ -1,7 +1,8 @@
 #Correção e evolução do projeto anterior.
 
 Notas: 1. Nesse projeto estou realizando o consumo uma api rest para fornecer as informações dos clientes e uma outra api para fornecer o JSON de enrereço através do cep, 
-       2. Ao digitar o cep e clicar fora do campo, os campos de endereço são preenchidos automaticamente e desabilitados.
+       2. Ao digitar o cep e clicar fora do campo, os campos de endereço são preenchidos automaticamente e desabilitados,
+       3. Existe um ponto de melhoria no projeto que é formulário de cadastro, edição, no qual eu poderia ter utilizado apenas 1 componente para ele, podendo chamar o mesmo            componente nas telas de cadastro e de edição.
 
 @Tela inicial: 
 
