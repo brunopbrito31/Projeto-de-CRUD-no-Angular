@@ -4,7 +4,7 @@ import {
   HttpHeaders,
 } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable, throwError } from "rxjs";
+import { Observable, pipe, throwError } from "rxjs";
 import { catchError, retry } from "rxjs/operators";
 import { Cep } from "src/app/models/cep";
 
@@ -26,7 +26,7 @@ export class CepService {
   // Obtem um endereço pelo cep
   getCep(cepProcurado: string): Observable<Cep> {
     return this.httpClient
-      .get<Cep>(this.url + cepProcurado + this.urlEnd)
+      .get<Cep>("https://viacep.com.br/ws/" + cepProcurado +"/json/")
       .pipe(retry(2), catchError(this.handleError));
   }
 

@@ -3,63 +3,54 @@
   <table>
     <tr>
       <td><label for="cad-cod">Codigo</label></td>
-      <td><input type="text" name="cad-cod"></td>
+      <td><input type="text" name="cad-cod" /></td>
     </tr>
     <tr>
       <td><label for="cad-nom">Nome</label></td>
-      <td><input type="text" name="cad-nom"></td>
+      <td><input type="text" name="cad-nom" /></td>
     </tr>
     <tr>
       <td><label for="cad-nfa">Nome_Fantasia</label></td>
-      <td><input type="text" name="cad-nfa"></td>
+      <td><input type="text" name="cad-nfa" /></td>
     </tr>
     <tr>
       <td><label for="cad-cep">CEP</label></td>
-      <td><input type="text" name="cad-cep"></td>
+      <td><input [(ngModel)]="cep" /></td>
     </tr>
     <tr>
-      <td colspan="2"><button type="submit">Buscar Endereço Pelo CEP</button></td>
+      <td colspan="2">
+        <button type="submit" (click)="getEndereco(cep)">Buscar Endereço Pelo CEP</button>
+      </td>
     </tr>
     <tr>
       <td><label for="cad-end">Endereço</label></td>
-      <td><input type="text" name="cad-end"></td>
+      <td><input type="text" name="cad-end" [value]="endereco" [disabled]="campodesativado"/></td>
     </tr>
     <tr>
       <td><label for="cad-bai">Bairro</label></td>
-      <td><input type="text" name="cad-bai"></td>
+      <td><input type="text" name="cad-bai" id="bairro" [value]="bairro" [disabled]="campodesativado"/></td>
     </tr>
     <tr>
       <td><label for="cad-loc">Localidade</label></td>
-      <td><input type="text" name="cad-loc"></td>
+      <td><input type="text" name="cad-loc" id="cidade" [value]="localidade" [disabled]="campodesativado"/></td>
     </tr>
     <tr>
       <td><label for="cad-uf">Uf</label></td>
-      <td><input type="text" name="cad-uf"></td>
+      <td><input type="text" name="cad-uf" id="uf" [value]="uf" [disabled]="campodesativado"/></td>
     </tr>
     <tr>
       <td><label for="cad-dat">Data</label></td>
-      <input type="text" name="cad-dat">
+      <input type="text" name="cad-dat" />
     </tr>
     <tr>
       <td><label for="cad-cnp">CNPJ</label></td>
-      <td><input type="text" id="cad-cnp"></td>
+      <td><input type="text" id="cad-cnp" /></td>
     </tr>
     <tr>
       <td><label for="cad-log">Logradouro</label></td>
-      <td><input type="text" id="cad-log"></td>
+      <td><input type="text" id="cad-log" id="logradouro" /></td>
     </tr>
   </table>
   <button type="submit">Cadastrar!</button>
 </form>
-
-
-
-
-
-
-
-
-
-
-
 
