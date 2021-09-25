@@ -1,5 +1,8 @@
 #Correção e evolução do projeto anterior.
 
+Notas: 1. Nesse projeto estou realizando o consumo uma api rest para fornecer as informações dos clientes e uma outra api para fornecer o JSON de enrereço através do cep, 
+       2. Ao digitar o cep e clicar fora do campo, os campos de endereço são preenchidos automaticamente e desabilitados.
+
 @Tela inicial: 
 
 ![Captura de Tela (953)](https://user-images.githubusercontent.com/73408388/134783290-db688166-8e49-410a-9af9-b0613f889a4e.png)
