@@ -1,0 +1,61 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+  </ol>
+</nav>
+<div class="container">
+  <div class="card list-cliente">
+    <h5 class="card-header">Lista de clientes</h5>
+    <div class="card-body">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Codigo</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Nome_Fantasia</th>
+            <th scope="col">Cep</th>
+            <th scope="col">Endereco</th>
+            <th scope="col">Bairro</th>
+            <th scope="col">Localidade</th>
+            <th scope="col">Uf</th>
+            <th scope="col">Data</th>
+            <th scope="col">CNPJ</th>
+            <th scope="col">Logradouro</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let cliente of clientes">
+            <td>{{ cliente.Id }}</td>
+            <td>{{ cliente.codigo }}</td>
+            <td>{{ cliente.nome }}</td>
+            <td>{{ cliente.nome_fantasia }}</td>
+            <td>{{ cliente.cep }}</td>
+            <td>{{ cliente.endereco }}</td>
+            <td>{{ cliente.bairro }}</td>
+            <td>{{ cliente.localidade }}</td>
+            <td>{{ cliente.uf }}</td>
+            <td>{{ cliente.data }}</td>
+            <td>{{ cliente.cnpj }}</td>
+            <td>{{ cliente.logradouro }}</td>
+            <td>
+              <button
+                type="button"
+                class="btn btn-warning btn-sm"
+                (click)="editCliente(cliente)"
+              >
+                Editar
+              </button>
+              <button
+                type="button"
+                class="btn btn-danger btn-sm ml-1"
+                (click)="deleteCliente(cliente)"
+              >
+                Deletar
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
